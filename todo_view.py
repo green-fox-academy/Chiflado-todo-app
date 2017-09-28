@@ -1,7 +1,5 @@
-import sys
 
-
-class TodoApp(object):
+class TodoView(object):
 
     def __init__(self):
         self.commands = [
@@ -10,6 +8,7 @@ class TodoApp(object):
             {'arg': '-r', 'desc': 'Removes a task'},
             {'arg': '-c', 'desc': 'Completes a task'}
         ]
+
     def print_commands(self):
         print('Command Line Todo application\n' + 
               '==============================\n\n' + 
@@ -17,11 +16,11 @@ class TodoApp(object):
         for i in self.commands:
             print(i['arg'] + '  ' + i['desc'])
 
-
-def start_app():
-    app = TodoApp()
-    args = sys.argv[1:]
-    if not args:
-        app.print_commands()
-
-start_app()
+    def print_list(self, todo_list):
+        if len(todo_list) == 0:
+            print('No todos for today! :)')
+        else:
+            for i in range(len(todo_list)):
+                task = todo_list[i]["name"]
+                check = "x" if todo_list[i]["checked"] else " "
+                print(str(i+1) + " - [" + check + "] " + task)
