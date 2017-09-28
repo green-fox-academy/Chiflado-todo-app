@@ -20,6 +20,12 @@ class TodoContoller(object):
             self.todo_view.print_commands()
         elif self.arg == '-l':
             self.todo_view.print_list(self.todo_model.todo_list)
+        elif self.arg == '-a':
+            self.add_task(sys.argv[2])
+
+    def add_task(self, task):
+        with open('todo_list.txt', 'a') as self.file:
+            self.file.write('0' + task + '\n')
 
 
 todo = TodoContoller()
