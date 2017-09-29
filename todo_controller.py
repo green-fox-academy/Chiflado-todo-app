@@ -22,10 +22,23 @@ class TodoContoller(object):
             self.todo_view.print_list(self.todo_model.todo_list)
         elif self.arg == '-a':
             self.add_task(sys.argv[2])
+        elif self.arg == '-r':
+            self.remove_task(sys.argv[2])
 
     def add_task(self, task):
-        with open('todo_list.txt', 'a') as self.file:
-            self.file.write('0' + task + '\n')
+        with open('todo_list.txt', 'a') as text_file:
+            text_file.write('0' + task + '\n')
+            text_file.close
+
+    def remove_task(self, task_number):
+        with open('todo_list.txt', 'r') as text_file:
+            self.list = list(text_file)
+
+        del self.list[int(task_number) - 1]
+
+        with open('todo_list.txt', 'w') as text_file:
+            for i in self.list:
+                text_file.write(i)
 
 
 todo = TodoContoller()
