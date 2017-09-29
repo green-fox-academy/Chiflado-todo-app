@@ -21,6 +21,6 @@ class TodoView(object):
             print('No todos for today! :)')
         else:
             for i in range(len(todo_list)):
-                task = todo_list[i]["name"]
-                check = "x" if todo_list[i]["checked"] else " "
-                print(str(i+1) + " - [" + check + "] " + task)
+                task = todo_list[i]['name']
+                check = 'x' if todo_list[i]['checked'] else ' '
+                print(str(i+1) + ' - [' + check + '] ' + task)

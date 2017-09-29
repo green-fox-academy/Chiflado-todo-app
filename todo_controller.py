@@ -24,6 +24,8 @@ class TodoContoller(object):
             self.add_task(sys.argv[2])
         elif self.arg == '-r':
             self.remove_task(sys.argv[2])
+        elif self.arg == '-c':
+            self.checked_task(sys.argv[2])
 
     def add_task(self, task):
         with open('todo_list.txt', 'a') as text_file:
@@ -36,6 +38,19 @@ class TodoContoller(object):
 
         del self.list[int(task_number) - 1]
 
+        with open('todo_list.txt', 'w') as text_file:
+            for i in self.list:
+                text_file.write(i)
+                text_file.close
+
+    def checked_task(self, finished_task):
+        with open('todo_list.txt', 'r') as text_file:
+            self.list = list(text_file)
+
+        completed_task = self.list[int(finished_task) - 1]
+        self.list[int(finished_task) - 1] = completed_task.replace('0', '1')
+        print(self.list, completed_task)
+        
         with open('todo_list.txt', 'w') as text_file:
             for i in self.list:
                 text_file.write(i)
