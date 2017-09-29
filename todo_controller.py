@@ -26,6 +26,9 @@ class TodoContoller(object):
             self.remove_task(sys.argv[2])
         elif self.arg == '-c':
             self.checked_task(sys.argv[2])
+        else:
+            print('\n-Unsupported argument-\n')
+            self.todo_view.print_commands()
 
     def add_task(self, task):
         with open('todo_list.txt', 'a') as text_file:
